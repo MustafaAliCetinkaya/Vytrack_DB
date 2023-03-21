@@ -39,7 +39,7 @@ public class ContactsStepDefs {
 
     @Then("the user should see following options")
     public void the_user_should_see_following_options(List<String> menuOptions) {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(5);
         //get the list of webelement and convert them to list of string and assert
         List<String> actualOptions = BrowserUtils.getElementsText(new DashboardPage().menuOptions);
 
@@ -78,7 +78,7 @@ public class ContactsStepDefs {
 
     @Then("the information should be same with database")
     public void the_information_should_be_same_with_database() {
-     BrowserUtils.waitFor(4);
+     BrowserUtils.waitFor(5);
      //get the information from UI
         ContactInfoPage contactInfoPage = new ContactInfoPage();
         String actualFullname = contactInfoPage.contactFullName.getText();
@@ -114,7 +114,7 @@ public class ContactsStepDefs {
 
     @Then("the information for {string} should be same with database")
     public void the_information_for_should_be_same_with_database(String email) {
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitFor(10);
         //get the information from UI
         ContactInfoPage contactInfoPage = new ContactInfoPage();
         String actualFullname = contactInfoPage.contactFullName.getText();

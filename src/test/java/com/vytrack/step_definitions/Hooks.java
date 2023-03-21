@@ -31,13 +31,13 @@ public class Hooks {
 
     }
 
-    @Before("@db")
+    @Before("@mali2")
     public void setUpDB(){
         System.out.println("Connecting to database...");
         DBUtils.createConnection();
     }
 
-    @After("@db")
+    @After("@mali2")
     public void tearDownDB(){
         System.out.println("close database connection...");
         DBUtils.destroy();
