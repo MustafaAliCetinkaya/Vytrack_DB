@@ -67,20 +67,19 @@ public class ContactsStepDefs {
 
     @When("the user clicks the {string} from contacts")
     public void the_user_clicks_the_from_contacts(String email) {
-
-        BrowserUtils.waitFor(5);
         //we have ready method to find email webelement in pom class
         //we just get the email from feature file and pass to that method and click it
         ContactsPage contactsPage = new ContactsPage();
+        BrowserUtils.waitFor(5);
         contactsPage.getContactEmail(email).click();
 
     }
 
     @Then("the information should be same with database")
     public void the_information_should_be_same_with_database() {
-     BrowserUtils.waitFor(5);
      //get the information from UI
         ContactInfoPage contactInfoPage = new ContactInfoPage();
+        BrowserUtils.waitForVisibility(contactInfoPage.email,10);
         String actualFullname = contactInfoPage.contactFullName.getText();
         String actualEmail = contactInfoPage.email.getText();
 
@@ -93,13 +92,14 @@ public class ContactsStepDefs {
                 "from orocrm_contact c inner join orocrm_contact_email e \n" +
                 "on c.id = e.owner_id \n" +
                 "where e.email = 'mrjakc@mail.ru'";
-
+        BrowserUtils.waitFor(10);
         //create the connection to qa3 env
        // DBUtils.createConnection();
         //get the data in java collections
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
         String expectedFullname = (String) rowMap.get("full_name");
         String expectedEmail = (String) rowMap.get("email");
+        BrowserUtils.waitFor(10);
 
         System.out.println("expectedFullname = " + expectedFullname);
         System.out.println("expectedEmail = " + expectedEmail);
